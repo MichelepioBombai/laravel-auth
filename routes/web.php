@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\HomeController as GuestHomeController;
+use App\http\Controllers\Admin\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::get('/dashboard', [AdminHomeController::class, 'index'])->middleware(['au
 
 Route::middleware('auth')
     ->prefix('/admin')
+    ->name('admin.')
     ->group(function() {
         route::resource('projects', ProjectController::class);
     });
