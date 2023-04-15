@@ -96,7 +96,11 @@
         </nav>
 
         <main class="container">
-            <h1 class="my-5">@yield('title')</h1>
+            <div class="d-flex justify-content-between align-items-start my-5">
+                <h1 class="my-5">@yield('title')</h1>
+                
+                @yield('actions')
+            </div>
 
             @yield('content')
         </main>

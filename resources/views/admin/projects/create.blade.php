@@ -1,33 +1,44 @@
 @extends('layouts.app')
+@section('title', 'aggiungi un progetto')
 
-@section('page-name', 'aggiungi un post')
-
+@section('actions')
+<a href="{{ route('admin.projects.index')}}" class="btn btn-primary my-5">Torna alla lista</a>
+@endsection
 
 @section('content')
-
-<form action="{{ route('admin.projects.store') }}" method="POST" class="row g-4">
-    @csrf
+<div class="card">
+  <div class="card-body">
     
-
-    <div class="col-4"> 
-      <label for="brand" class="form-label">title</label>
-      <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" />
+    <form action="{{ route('admin.projects.store') }}" method="POST" class="row g-4">
+      @csrf
+      
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12"> 
+            <label for="title" class="form-label">title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" />
+          </div>
+          
+          <div class="col-12">
+            <label for="image" class="form-label">image</label>
+            <input class="form-control" type="text" id="image" name="image" >
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-8 mb-3">
+        <label for="text" class="form-label">text</label>
+        <textarea  class="form-control" id="text" name="text" value="{{ old('text') }}"  rows="5"></textarea>
+      </div>
+      
+      
+      <div class="col-12">
+          <button type="submit" class="btn btn-primary my-1">Salva</button>
+        </div>
+    
+    
+      </form>
     </div>
-
-    <div class="col-4">
-      <label for="model" class="form-label">slug</label>
-      <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}"/>
-    </div>
-
-    <div class="col-4">
-      <label for="size" class="form-label">text</label>
-      <input type="text" class="form-control" id="text" name="text" value="{{ old('text') }}"/>
-    </div>
-
-    <div class="col-4">
-      <button type="submit" class="btn btn-primary my-3">Salva</button>
-    </div>
-
-  </form>
+  </div>
 </div>
 @endsection

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 <form action="{{ route('admin.projects.update') }}" method="POST">
-    @method('PUT') @csrf
+    @method('PUT')
+     @csrf
 
     <label for="title" class="form-label">title</label>
     <input

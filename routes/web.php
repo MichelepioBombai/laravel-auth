@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\HomeController as GuestHomeController;
 use App\http\Controllers\Admin\ProjectController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\Type\Parameter;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,9 @@ Route::middleware('auth')
     ->prefix('/admin')
     ->name('admin.')
     ->group(function() {
-        route::resource('projects', ProjectController::class);
+        route::resource('projects', ProjectController::class)
+            ->Parameters(['projects' => 'project:slug']);
+
     });
 
 
