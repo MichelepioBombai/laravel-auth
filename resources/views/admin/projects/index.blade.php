@@ -14,7 +14,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">titolo</th>
                 <th scope="col">Abstract</th>
-                <th scope="col"></th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +27,10 @@
                     <a href="{{ route('admin.projects.show', $project) }}">
                         <i class="bi bi-eye"></i>
                     </a>
+                    <a href="{{ route('admin.projects.edit', $project) }}">
+                        <i class="bi bi-pencil-fill ms-3"></i>
+                    </a>
+
                 </td>
             </tr>
             @empty
