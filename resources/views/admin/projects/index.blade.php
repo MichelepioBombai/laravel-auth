@@ -30,14 +30,14 @@
                     <td>{{ $project->getAbstract() }}</td>
                     <td>
                         <a href="{{ route('admin.projects.show', $project) }}">
-                            <i class="bi bi-eye"></i>
+                            <i class="bi bi-eye mx-2"></i>
                         </a>
                         <a href="{{ route('admin.projects.edit', $project) }}">
-                            <i class="bi bi-pencil-fill ms-3"></i>
+                            <i class="bi bi-pencil mx-2"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $project->id }}">
-                            Elimina              
-                        </button>
+                        <a type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $project->id }}">
+                            <i class="bi bi-trash mx-2"></i>              
+                        </a>
         
                     </td>
                 </tr>
