@@ -8,12 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} | Back Office</title>
+    <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- bs icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -93,7 +95,9 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="container">
+            <h1 class="my-5">@yield('title')</h1>
+
             @yield('content')
         </main>
     </div>
