@@ -22,13 +22,14 @@
         value="{{ $project->slug }}"
     />
 
-    <label for="tetx" class="form-label">tetx</label>
-    <input
-    type="text"
-    class="form-control"
-    id="tetx"
-    name="tetx"
-    value="{{ $project->tetx }}"
-/>
+    <label for="text" class="form-label">text</label>
+    <textarea  
+    class="form-control" 
+    id="text" 
+    name="text" 
+    value="{{ $project->text }}"  
+    rows="5">
+    </textarea>
+    
     <button type="submit" class="btn btn-primary">Salva</button>
 </form>
