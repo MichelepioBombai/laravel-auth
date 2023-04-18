@@ -7,16 +7,12 @@
 
 @section('content')
 
-@if($errors->any())
-  
-  @dump($e)
 
-@endif
 
 <div class="card">
   <div class="card-body">
     
-    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="row g-4">
+    <form action="{{ route('admin.projects.store') }}" method="POST"  class="row g-4">
       @csrf
       
       <div class="col-4">

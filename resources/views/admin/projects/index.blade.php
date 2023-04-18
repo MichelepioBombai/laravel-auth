@@ -2,7 +2,7 @@
 @section('title', 'Projects')
 
 @section('actions')
-<a class="btn btn-primary my-5" href="{{ route('admin.projects.create') }}">aggiungi post</a>
+<a class="btn btn-primary my-5" href="{{ route('admin.projects.create') }}">aggiungi un nuovo progetto</a>
 @endsection
 
 @section('content')

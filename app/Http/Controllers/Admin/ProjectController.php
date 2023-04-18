@@ -65,7 +65,7 @@ class ProjectController extends Controller
         $project->save();
 
 
-        return redirect('admin.projects.show', $project)
+        return to_route('admin.projects.show', $project)
             ->with('messagge_content', 'Progetto creato con successo');
     }
 
