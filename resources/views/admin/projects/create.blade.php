@@ -6,6 +6,13 @@
 @endsection
 
 @section('content')
+
+@if($errors->any())
+  
+  @dump($e)
+
+@endif
+
 <div class="card">
   <div class="card-body">
     
@@ -21,7 +28,7 @@
           
           <div class="col-12">
             <label for="image" class="form-label">image</label>
-            <input class="form-control" type="text" id="image" name="image" >
+            <input class="form-control" type="url" id="image" name="image" >
           </div>
         </div>
       </div>

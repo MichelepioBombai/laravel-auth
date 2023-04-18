@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -37,14 +38,35 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'title' => 'required|string|max:100|',
+            'text' => 'required|string',
+            'image' => 'nullable|url',
+
+        ],
+        [
+            'title.required' => 'il titolo è obbligatorio',
+            'title.string' => 'il titolo deve essere una stringa',
+            'title.max' => 'il titolo può contenere al massimo 100 caratteri',
+            'text.required' => 'il contenuto è obbligatorio',
+            'text.string' => 'il contenuto deve essere una stringa',
+            'image.url' => 'L\'immagine deve essere un URL',
+
+
+        ]); 
+
+
         $data = $request->all();
         $project = new Project;
         $project->fill($data);
         $project->slug = $project->id . '-' . Str::of($project->title)->slug('-');
+        $img_path = Storage::put('uploads', $data['image']);
         $project->save();
 
 
-        return to_route('admin.projects.show', $project);
+        return redirect('admin.projects.show', $project)
+            ->with('messagge_content', 'Progetto creato con successo');
     }
 
     /**
@@ -67,6 +89,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         return view('admin.projects.edit', compact('project'));
+        
     }
 
     /**
@@ -78,9 +101,27 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $request->validate([
+            'title' => 'required|string|max:100|',
+            'text' => 'required|string',
+            'image' => 'nullable|url',
+
+        ],
+        [
+            'title.required' => 'il titolo è obbligatorio',
+            'title.string' => 'il titolo deve essere una stringa',
+            'title.max' => 'il titolo può contenere al massimo 100 caratteri',
+            'text.required' => 'il contenuto è obbligatorio',
+            'text.string' => 'il contenuto deve essere una stringa',
+            'image.url' => 'L\'immagine deve essere un link valido',
+
+
+        ]); 
+        
         $data = $request->all();
         $project->update($data);
-        return redirect()->route('admin.projects.show', $project);
+        return redirect()->route('admin.projects.show', $project)
+        ->with('messagge_content', 'Progetto modificato con successo');
     }
 
     /**
@@ -91,7 +132,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $id_project = $project->id;
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        
+        return redirect()->route('admin.projects.index')
+            ->with('messagge_type', "danger")
+            ->with('messagge_content', "Progetto $id_project eliminato con successo");
     }
 }
