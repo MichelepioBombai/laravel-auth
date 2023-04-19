@@ -48,7 +48,7 @@ class ProjectController extends Controller
         [
             'title.required' => 'il titolo è obbligatorio',
             'title.string' => 'il titolo deve essere una stringa',
-            'title.max' => 'il titolo può contenere al massimo 100 caratteri',
+            'title.max' => 'il titolo può può avere massimo 20 caratteri',
             'text.required' => 'il contenuto è obbligatorio',
             'text.string' => 'il contenuto deve essere una stringa',
             'image.url' => 'L\'immagine deve essere un URL',

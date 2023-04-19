@@ -7,12 +7,24 @@
 
 @section('content')
 
+      @if($errors->any())
+        <div class="alert alert-danger" role="alert">
+          <h3>
+            Risolvi i seguenti errori
+          </h3>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
 
 
 <div class="card">
   <div class="card-body">
     
-    <form action="{{ route('admin.projects.store') }}" method="POST"  class="row g-4">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="row g-4">
       @csrf
       
       <div class="col-4">
