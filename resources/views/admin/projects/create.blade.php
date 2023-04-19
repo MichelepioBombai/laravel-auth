@@ -42,7 +42,7 @@
           
           <div class="col-12">
             <label for="image" class="form-label">image</label>
-            <input class="form-control @error('image') is-invalid @enderror" type="url" id="image" name="image" {{ old('image') }} />
+            <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" {{ old('image') }} />
 
             @error('image')
               <div class="invalid-feedback">

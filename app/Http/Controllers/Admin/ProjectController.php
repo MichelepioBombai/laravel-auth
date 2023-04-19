@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 class ProjectController extends Controller
 {
@@ -42,7 +43,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:100|',
             'text' => 'required|string',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
 
         ],
         [
@@ -51,13 +52,21 @@ class ProjectController extends Controller
             'title.max' => 'il titolo può può avere massimo 20 caratteri',
             'text.required' => 'il contenuto è obbligatorio',
             'text.string' => 'il contenuto deve essere una stringa',
-            'image.url' => 'L\'immagine deve essere un URL',
+            'image.image' => ' il file caricato deve essere un\'immagine',
+            'image.mimes' => ' le estensioni accettate per l\'immagine sono jpg, png, jpeg',
 
 
         ]); 
 
-
         $data = $request->all();
+
+        if(Arr::exists($data, 'image')) {
+            $path = Storage::put('uplodas/projects', $data['image']);
+            $data['image'] = $path;
+        }
+        
+
+
         $project = new Project;
         $project->fill($data);
         $project->slug = $project->id . '-' . Str::of($project->title)->slug('-');
@@ -104,7 +113,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:100|',
             'text' => 'required|string',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
 
         ],
         [
@@ -113,7 +122,9 @@ class ProjectController extends Controller
             'title.max' => 'il titolo può contenere al massimo 100 caratteri',
             'text.required' => 'il contenuto è obbligatorio',
             'text.string' => 'il contenuto deve essere una stringa',
-            'image.url' => 'L\'immagine deve essere un link valido',
+            'image.image' => ' il file caricato deve essere un\'immagine',
+            'image.mimes' => ' le estensioni accettate per l\'immagine sono jpg, png, jpeg',
+
 
 
         ]); 
