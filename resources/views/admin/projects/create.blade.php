@@ -31,19 +31,36 @@
         <div class="row">
           <div class="col-12"> 
             <label for="title" class="form-label">title</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" />
+            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" {{ old('title') }} />
+            
+            @error('title')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
           </div>
           
           <div class="col-12">
             <label for="image" class="form-label">image</label>
-            <input class="form-control" type="url" id="image" name="image" >
+            <input class="form-control @error('image') is-invalid @enderror" type="url" id="image" name="image" {{ old('image') }} />
+
+            @error('image')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
           </div>
         </div>
       </div>
       
       <div class="col-8 mb-3">
         <label for="text" class="form-label">text</label>
-        <textarea  class="form-control" id="text" name="text" value="{{ old('text') }}"  rows="5"></textarea>
+        <textarea  class="form-control @error('text') is-invalid @enderror" id="text" name="text" value="{{ old('text') }}"  rows="5">{{ old('text') }}</textarea>
+            @error('text')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror    
       </div>
       
       
